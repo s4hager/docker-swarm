@@ -24,7 +24,7 @@ COPY ./data/scripts/mariadb-entrypoint.sh /scripts/mariadb-entrypoint.sh
 
 #USER $user
 
-#CMD [ "/scripts/mariadb-entrypoint.sh" ] # geht ned?
+# CMD [ "/scripts/mariadb-entrypoint.sh" ]
 
 # MariaDB-Dienst ausführen
 CMD [ "mariadbd" ]
