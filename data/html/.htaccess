@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Bitte anmelden!"
+AuthUserFile /var/www/pass/.htpasswd
+Require user student simon

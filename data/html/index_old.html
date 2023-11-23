@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ: Docker & Kubernetes</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="text-center"><h1>FAQ Docker & Kubernetes</h1></div>
+
+<?php
+$conn = new mysqli('mariadb1', 'student', 'student123');
+
+$sql = 'SELECT id, frage, antwort FROM faq_database.faq;';
+
+if ($result = $conn->query($sql)) {
+    while ($data = $result->fetch_object()) {
+        $faq[] = $data;
+    }
+}
+
+
+// Tabelle erzeugen
+echo "<div class='m-3' id='cliste'><table class='table table-bordered table-hover'>";
+echo "<thead><tr><th>ID</th><th>Frage</th><th>Antwort</th>";
+echo "</tr></thead><tbody>";
+foreach ($faq as $s) {
+    echo "<tr><td>";
+    echo $s->id . "</td><td>" . $s->frage . "</td><td> " . $s->antwort;
+    echo "</td>";
+}
+echo "</tbody></tr></table>";
+?>
+
+</body>
+</html>

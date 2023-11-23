@@ -1,0 +1,16 @@
+360  mkcd /docker
+  361  chown -R student:student /docker
+  362  apt-get install -y npm && npm i bootstrap
+  363  ls -la data/html
+  364  apt-get update && apt-get install -y npm
+  365  cd data/html && npm i bootstrap
+  366  ls -la
+  367  cd ../../ssh
+  368  ls
+  369  ssh-keygen -f remote-key
+  370  \n
+  371  cd /docker
+  372  docker compose up -d
+  373  chmod +x data/docker-entrypoint.sh
+  374  docker compose build
+  375  docker compose up -d

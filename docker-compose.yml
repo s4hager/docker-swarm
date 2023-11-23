@@ -1,0 +1,66 @@
+services:
+  mariadb:
+    container_name: mariadb
+    image: my-own-mariadb
+    build:
+      context: .
+      dockerfile: mariadb.Dockerfile
+    restart: always
+    environment:
+      MYSQL_USER: student
+      MYSQL_PASSWORD: student123
+      MYSQL_ROOT_PASSWORD: Student123!
+    volumes:
+      - ./data/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data/database_data:/var/lib/mysql
+    networks:
+      - net
+    stdin_open: true
+    tty: true
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: my-own-phpmyadmin
+    build:
+      context: .
+      dockerfile: phpmyadmin.Dockerfile
+    restart: always
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+    ports:
+      - "8080:80"
+      - "2200:22"
+    depends_on:
+      - mariadb
+    volumes:
+      - ./data/html/.htaccess:/var/www/html/.htaccess
+      - ./data/pass/.htpasswd:/var/www/pass/.htpasswd
+    networks:
+      - net
+    stdin_open: true
+    tty: true
+
+  web:
+    container_name: web
+    image: my-own-php-apache
+    build:
+      context: .
+      dockerfile: web.Dockerfile
+    restart: always
+    depends_on:
+      - mariadb
+    ports:
+      - "8081:80"
+      - "2201:22"
+    volumes:
+      - ./data/html/:/var/www/html
+      - ./data/pass:/var/www/pass
+    networks:
+      - net
+    stdin_open: true
+    tty: true
+
+networks:
+  net:
+    driver: bridge
