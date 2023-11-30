@@ -13,8 +13,8 @@ services:
     volumes:
       - ./data/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./data/database_data:/var/lib/mysql
-    networks:
-      - net
+    # networks:
+    #   - net
     stdin_open: true
     tty: true
 
@@ -36,8 +36,8 @@ services:
     volumes:
       - ./data/html/.htaccess:/var/www/html/.htaccess
       - ./data/pass/.htpasswd:/var/www/pass/.htpasswd
-    networks:
-      - net
+    # networks:
+    #   - net
     stdin_open: true
     tty: true
 
@@ -56,13 +56,15 @@ services:
     volumes:
       - ./data/html/:/var/www/html
       - ./data/pass:/var/www/pass
-    networks:
-      - net
+    # networks:
+    #   - net
     stdin_open: true
     tty: true
 
-networks:
-  net:
-#    driver: bridge
-    driver: overlay
-    attachable: true
+# networks:
+  # net:
+  #  driver: bridge
+    # driver: overlay
+    # attachable: true
+    # scope: swarm
+    
