@@ -4,12 +4,15 @@ services:
     image: my-own-mariadb
     build:
       context: .
+      # dockerfile: temp.Dockerfile
       dockerfile: mariadb.Dockerfile
     restart: always
     environment:
       MYSQL_USER: student
       MYSQL_PASSWORD: student123
       MYSQL_ROOT_PASSWORD: Student123!
+    ports:
+      - "2202:22"
     volumes:
       - ./data/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./data/database_data:/var/lib/mysql
@@ -20,17 +23,18 @@ services:
 
   phpmyadmin:
     container_name: phpmyadmin
-    image: my-own-phpmyadmin
-    build:
-      context: .
-      dockerfile: phpmyadmin.Dockerfile
+    image: phpmyadmin:5.2
+    # image: my-own-phpmyadmin
+    # build:
+      # context: .
+      # dockerfile: phpmyadmin.Dockerfile
     restart: always
     environment:
       PMA_HOST: mariadb
       PMA_PORT: 3306
     ports:
       - "8080:80"
-      - "2200:22"
+      # - "2200:22"
     depends_on:
       - mariadb
     volumes:
