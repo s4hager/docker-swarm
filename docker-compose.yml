@@ -4,8 +4,9 @@ services:
     image: my-own-mariadb
     build:
       context: .
-      # dockerfile: temp.Dockerfile
-      dockerfile: mariadb.Dockerfile
+      # dockerfile: temp2.Dockerfile
+      dockerfile: temp.Dockerfile
+      # dockerfile: mariadb.Dockerfile
     restart: always
     environment:
       MYSQL_USER: student
