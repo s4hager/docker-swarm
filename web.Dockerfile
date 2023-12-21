@@ -7,8 +7,8 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 ARG user='sshuser'
 
 # Proxy
-#ENV http_proxy="http://proxy.dvs-plattling.de:3128/"
-#ENV https_proxy="http://proxy.dvs-plattling.de:3128/"
+ENV http_proxy="http://proxy.dvs-plattling.de:3128/"
+ENV https_proxy="http://proxy.dvs-plattling.de:3128/"
 
 # Benutzer erstellen
 RUN useradd -ms /bin/bash $user && \

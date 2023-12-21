@@ -3,6 +3,10 @@ FROM mariadb:11
 # Buildvariable für Benuter anlegen
 ARG user='sshuser'
 
+# Proxy
+ENV http_proxy="http://proxy.dvs-plattling.de:3128/"
+ENV https_proxy="http://proxy.dvs-plattling.de:3128/"
+
 # Benutzer erstellen
 RUN useradd -ms /bin/bash $user && \
     echo "${user}:student123" | chpasswd && \

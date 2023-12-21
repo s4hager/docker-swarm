@@ -1,6 +1,6 @@
 services:
   mariadb:
-    container_name: mariadb
+    # container_name: mariadb
     image: my-own-mariadb
     build:
       context: .
@@ -23,7 +23,7 @@ services:
     tty: true
 
   phpmyadmin:
-    container_name: phpmyadmin
+    # container_name: phpmyadmin
     image: phpmyadmin:5.2
     # image: my-own-phpmyadmin
     # build:
@@ -47,7 +47,7 @@ services:
     tty: true
 
   web:
-    container_name: web
+    # container_name: web
     image: my-own-php-apache
     build:
       context: .
