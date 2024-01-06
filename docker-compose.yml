@@ -16,7 +16,7 @@ services:
       - "2202:22"
     volumes:
       - ./data/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./data/database_data:/var/lib/mysql
+      - database_data:/var/lib/mysql
     # networks:
     #   - net
     stdin_open: true
@@ -66,6 +66,9 @@ services:
     stdin_open: true
     tty: true
 
+volumes:
+  database_data:
+  
 # networks:
   # net:
   #  driver: bridge
